@@ -4,7 +4,7 @@ const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const { profile } = require('console');
-const app = express()
+const app = express();
 require('dotenv').config();
 
 app.set('view engine', 'ejs');
