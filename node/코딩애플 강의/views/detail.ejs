@@ -1,0 +1,31 @@
+<!doctype html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/public/main.css"
+
+  </head>
+  <body>
+
+    <%- include("nav.html") %>
+     
+
+      <div class="container mt-3">
+        <h4 class="text-center">상세 페이지</h4>
+        <div class="card" style="width: 100%">
+          <div class="card-body">
+            <h5 class="card-title"><%= data.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= data.date %></h6>
+            <p class="card-text">임시내용입니다.</p>
+            <a href="#" class="card-link">수정하기</a>
+          </div>
+        </div>
+      </div>
+  
+  </body>
+</html>

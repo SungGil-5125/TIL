@@ -1,0 +1,84 @@
+<!doctype html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+
+<%- include("nav.html") %>
+
+    
+
+<h4 class="ml-2 my-3 text-center">이것은 검색결과 페이지</h4>
+
+<div class="container input-group mb-2">
+  <input class="form-control" id="search-input">
+  <button class="input-group-append btn btn-danger" id="search">검색</button>
+</div>
+
+<script>
+  $('#search').click(function(){
+    var 입력한값 = $('#search-input').val();//입력한거 가져오기
+    window.location.replace('/search?value=' + 입력한값)
+  });
+
+</script>
+
+<div class="container">
+    <ul class="list-group">
+      <% for(let i = 0; i < posts.length; i++){ %> 
+      <li class="list-group-item">
+        <p>글번호<%= posts[i]._id %></p>
+        <h4>할일 제목 <%= posts[i].제목 %></h4>
+        <p>오늘 날짜 <%= posts[i].날짜 %></p>
+        <button class ="btn btn-danger delete" data-id="<%= posts[i]._id %>">삭제</button>
+      </li>
+      <% } %>
+    </ul>
+  <div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+
+      var 지금누른거 = $(this);
+       
+      $('.delete').click(function(e){
+        $.ajax({
+          method : 'DELETE',
+          url : '/delete',
+          data : { _id : e.target.dataset.id }
+        }).done((result)=>{
+          console.log("성공");
+          $(this).parent('li').fadeOut();//this의 li를 찾는다 //fadeOut() == 서서히 사라지게 만듬
+
+        }).fail((a,b,c)=>{
+          console.log(a,b,c);
+        })
+    });
+
+    </script>
+    
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
