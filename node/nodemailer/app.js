@@ -2,15 +2,20 @@ const nodemailer = require('nodemailer');
 const express = require('express');
 const { redirect } = require('express/lib/response');
 const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
 
 const EMAIL = "";
 const EMAIL_PW = "";
 
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
+app.set('viees', './views');
+
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended:true }));
 
 app.get('/mail', (req,res)=>{
-    res.sendFile(path.join(__dirname, "mail.html"));
+    res.render('mail.ejs');
 })
 
 let number = "";
@@ -19,7 +24,6 @@ for (let i = 0; i < 4; i++) {
   }
 
 app.post('/mail', (req, res)=>{
-    console.log(req);
 
     const receiverEmail = req.body.user_email;
 
@@ -35,7 +39,7 @@ app.post('/mail', (req, res)=>{
         from : EMAIL,
         to : receiverEmail,
         subject : "test",
-        text: '오른쪽 4자리를 입력해주세요' + number,
+        text: '오른쪽 4자리를 입력해주세요 ' + number,
     };
 
     transport.sendMail(mailOptions, (error, info) => {
