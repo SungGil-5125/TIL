@@ -17,6 +17,8 @@ async function test(){
         
 }
 ```
+
+당연한거지만 await을 쓸려면 function 앞에 async를 써야한다. promise를 사용하면서 알았다..
 ### async와 await를 사용했을때 차이점
 
 ```javascript
