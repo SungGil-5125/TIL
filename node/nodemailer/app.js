@@ -9,7 +9,7 @@ const EMAIL = "";
 const EMAIL_PW = "";
 
 app.set('view engine', 'ejs');
-app.set('viees', './views');
+app.set('views', './views');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended:true }));
